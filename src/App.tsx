@@ -4,6 +4,7 @@ import { Button, Box, Grid, Typography } from '@mui/material'
 import { decrement, increment } from './features/counter/counterSlice'
 import { RootState } from './store'
 import './App.css'
+import Books from './features/books/Books'
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value)
@@ -29,6 +30,7 @@ function App() {
           </Grid>
         </Grid>
       </Box>
+      <Books />
     </div>
   )
 }
