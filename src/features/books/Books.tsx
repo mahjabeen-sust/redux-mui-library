@@ -34,47 +34,6 @@ const Books = () => {
   }, [])
 
   return (
-    // <div>
-    //   {/* <button onClick={fetchBooks}>Fetch Books</button> */}
-    //   {booksState.isLoading ? <span>Loading .... </span> : ''}
-    //   {booksState.items.map((book) => {
-    //     return (
-    //       <div>
-    //         <div>
-    //           <h3>{book.title}</h3>
-    //         </div>
-    //         <ul>
-    //           <li>
-    //             <strong>Author:</strong> {book.authors}
-    //           </li>
-    //           <li>
-    //             <strong>Publisher:</strong> {book.publisher}
-    //           </li>
-    //           <li>
-    //             <strong>Status</strong> {book.status ? 'Available' : 'Borrowed'}
-    //           </li>
-    //         </ul>
-    //       </div>
-    //       <Card sx={{ maxWidth: 345, p: 2 }}>
-    //         <CardActionArea>
-    //           <CardMedia sx={{ height: 140 }} image="/assets/images/img-3.jpg" title={book.title} />
-    //           <CardContent>
-    //             <Typography gutterBottom variant="h5" component="div">
-    //               {book.title}
-    //             </Typography>
-    //             <Typography variant="body2" color="text.secondary">
-    //               {book.description}
-    //             </Typography>
-    //             <Typography gutterBottom variant="h6" component="span">
-    //               {book.status ? 'Available' : 'Borrowed'}
-    //             </Typography>
-    //           </CardContent>
-    //         </CardActionArea>
-    //       </Card>
-
-    //     )
-    //   })}
-    // </div>
     <Box sx={{ flexGrow: 1 }}>
       {booksState.isLoading ? <span>Loading .... </span> : ''}
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
