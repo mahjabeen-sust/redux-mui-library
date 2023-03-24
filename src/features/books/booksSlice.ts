@@ -34,7 +34,7 @@ export const fetchBooksThunk = createAsyncThunk('books/fetch', async (data, thun
   try {
     const response = await fetch(JSON_PLACEHOLDER_API)
     const data: Book[] = await response.json()
-    console.log('Found books', data)
+    //console.log('Found books', data)
     return data
   } catch (error: any) {
     return thunkApi.rejectWithValue(error.message)

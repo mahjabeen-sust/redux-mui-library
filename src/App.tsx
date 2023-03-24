@@ -12,8 +12,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Vite + React + Toolkit + MUI</h1>
-      <Box sx={{ width: '100%' }}>
+      <h1>Vite + React + Toolkit + MUI: Library</h1>
+      {/* <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={5}>
             <Button variant="contained" onClick={() => dispatch(increment())}>
@@ -29,7 +29,7 @@ function App() {
             </Button>
           </Grid>
         </Grid>
-      </Box>
+      </Box> */}
       <Books />
     </div>
   )
