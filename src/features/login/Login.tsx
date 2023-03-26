@@ -9,6 +9,7 @@ import { login } from './userSlice'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const admin = 'def@gmail.com'
   const navigate = useNavigate()
   const { handleSubmit } = useForm()
 
@@ -24,7 +25,11 @@ const Login = () => {
     //alert('loguser')
     if (payload) {
       dispatch(login(payload.email))
-      navigate('/dashboard')
+      if (payload.email === admin) {
+        navigate('/adminDashboard')
+      } else {
+        navigate('/dashboard')
+      }
     } else {
       alert('wrong credentials')
     }

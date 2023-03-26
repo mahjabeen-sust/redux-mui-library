@@ -5,7 +5,9 @@ import ProtectedRoute from './routing/ProtectedRoute'
 import LoginControl from './features/login/LoginControl'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from './store'
-import { logout } from './features/login/userSlice'
+import AdminDashboard from './features/login/AdminDashboard'
+import BookForm from './features/books/BookForm'
+import AuthorForm from './features/author/AuthorForm'
 
 /**
  * https://stackoverflow.com/questions/71885505/react-router-v6-no-routes-matched-location
@@ -54,6 +56,11 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/adminDashboard" element={<AdminDashboard />} />
+                <Route path="/addBook" element={<BookForm />} />
+                <Route path="/updateBook" element={<BookForm />} />
+                <Route path="/addAuthor" element={<AuthorForm />} />
+                <Route path="/updateAuthor" element={<AuthorForm />} />
               </Route>
             </Routes>
           </Wrapper>

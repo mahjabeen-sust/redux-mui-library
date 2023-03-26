@@ -71,7 +71,7 @@ export const userSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<any>) => {
+    login: (state, action: PayloadAction<LoggedInUser>) => {
       state.loggedInUser = action.payload
       //console.log('inside login reducer>state.loggedInUser: ', state.loggedInUser)
     },
@@ -86,7 +86,7 @@ export const userSlice = createSlice({
       state.error = null
     })
 
-    builder.addCase(fetchUserThunk.fulfilled, (state, action: PayloadAction<any>) => {
+    builder.addCase(fetchUserThunk.fulfilled, (state, action: PayloadAction<User[]>) => {
       state.isLoading = false
       state.users = action.payload
     })
@@ -97,11 +97,6 @@ export const userSlice = createSlice({
     })
   }
 })
-
-//export const { registered, login, logout } = userSlice.actions
-
-// Select state username from slice
-//export const selectUsername = state => state.user.username;
 
 export const { login, logout } = userSlice.actions
 
