@@ -26,13 +26,13 @@ const initialState: BookState = {
   error: null
 }
 
-const JSON_PLACEHOLDER_API = 'http://localhost:3000/books.json'
+const BOOKS_PLACEHOLDER_API = 'http://localhost:3000/books.json'
 
 //ACTION
 
 export const fetchBooksThunk = createAsyncThunk('books/fetch', async (data, thunkApi) => {
   try {
-    const response = await fetch(JSON_PLACEHOLDER_API)
+    const response = await fetch(BOOKS_PLACEHOLDER_API)
     const data: Book[] = await response.json()
     //console.log('Found books', data)
     return data

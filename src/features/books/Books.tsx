@@ -10,7 +10,6 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { CardActionArea } from '@mui/material'
 
 import Box from '@mui/system/Box'
 import Grid from '@mui/system/Unstable_Grid'
@@ -42,24 +41,23 @@ const Books = () => {
           <Grid xs={2} sm={4} key={book.isbn}>
             <Item>
               <Card sx={{ maxWidth: 345, p: 2, minHeight: 430 }}>
-                <CardActionArea>
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="/assets/images/book-image.jpg"
-                    title={book.title}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {book.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {book.description}
-                    </Typography>
-                    <Typography gutterBottom variant="h6" component="span">
-                      {book.status ? 'Available' : 'Borrowed'}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image="/assets/images/book-image.jpg"
+                  title={book.title}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {book.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {book.description.substring(0, 200)}
+                  </Typography>
+                  <Typography gutterBottom variant="h6" component="span">
+                    {book.status ? 'Available' : 'Borrowed'}
+                  </Typography>
+                </CardContent>
+                <CardActions>{book.status ? <Button size="small">Borrow</Button> : ''}</CardActions>
               </Card>
             </Item>
           </Grid>

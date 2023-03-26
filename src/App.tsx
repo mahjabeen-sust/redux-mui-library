@@ -1,36 +1,64 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Login from './features/login/Login'
+import Dashboard from './features/login/Dashboard'
+import ProtectedRoute from './routing/ProtectedRoute'
+import LoginControl from './features/login/LoginControl'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Box, Grid, Typography } from '@mui/material'
+import type { RootState, AppDispatch } from './store'
+import { logout } from './features/login/userSlice'
 
-import { decrement, increment } from './features/counter/counterSlice'
-import { RootState } from './store'
-import './App.css'
-import Books from './features/books/Books'
+/**
+ * https://stackoverflow.com/questions/71885505/react-router-v6-no-routes-matched-location
+ */
+
+const Home = () => <h1>Home</h1>
+const Logout = () => (
+  <ul>
+    <li>You have successfully logged out!</li>
+    {/* <li>
+      <Link to="/login">Login</Link>
+    </li> */}
+  </ul>
+)
+
+const Header = ({ children }: any) => children
+const Wrapper = ({ children }: any) => children
+
+// const NavBar = () => (
+//   <ul>
+//     <li>
+//       <Link to="/login">Login</Link>
+//     </li>
+//   </ul>
+// )
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const loggedInUser = useSelector((state: RootState) => state.auth.loggedInUser)
+  //console.log('rerender app loggedInUser:', loggedInUser)
+  const dispatch = useDispatch<AppDispatch>()
 
   return (
     <div className="App">
-      <h1>Vite + React + Toolkit + MUI: Library</h1>
-      {/* <Box sx={{ width: '100%' }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={5}>
-            <Button variant="contained" onClick={() => dispatch(increment())}>
-              Increment
-            </Button>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography>{count}</Typography>
-          </Grid>
-          <Grid item xs={5}>
-            <Button variant="contained" onClick={() => dispatch(decrement())}>
-              Decrement
-            </Button>
-          </Grid>
-        </Grid>
-      </Box> */}
-      <Books />
+      <BrowserRouter>
+        <Header>
+          {/* <NavBar /> */}
+          <LoginControl />
+        </Header>
+        <div>
+          <Wrapper>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {/* <Route path="create" element={<Creation user={account} />} /> */}
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+            </Routes>
+          </Wrapper>
+        </div>
+      </BrowserRouter>
     </div>
   )
 }
