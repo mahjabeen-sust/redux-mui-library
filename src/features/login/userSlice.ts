@@ -3,11 +3,9 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 import { User } from '../../type'
 
-export type LoggedInUser = string | null
-
 export interface UserState {
   users: User[]
-  loggedInUser: LoggedInUser
+  loggedInUser: User | null
   isLoading: boolean
   error: string | null
 }
@@ -62,7 +60,7 @@ export const userSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<LoggedInUser>) => {
+    login: (state, action: PayloadAction<User>) => {
       state.loggedInUser = action.payload
       //console.log('inside login reducer>state.loggedInUser: ', state.loggedInUser)
     },

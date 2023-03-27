@@ -1,5 +1,3 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import type { RootState } from '../../store'
@@ -10,11 +8,11 @@ export default function Dashboard() {
   const user = useSelector((state: RootState) => state.auth.loggedInUser)
 
   return (
-    <>
+    <div>
       <h1>Dashboard</h1>
-      <h2>Welcome {user}</h2>
+      <h2>Welcome {user?.email}</h2>
       {/* <Link to="/login">Log out</Link> */}
       <Books />
-    </>
+    </div>
   )
 }

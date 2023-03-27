@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import type { RootState, AppDispatch } from '../../store'
@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   return (
     <>
       <h1>Admin Dashboard</h1>
-      <h2>Welcome {user}</h2>
+      <h2>Welcome {user?.email}</h2>
       {/* <Link to="/login">Log out</Link> */}
       <AdminNav />
 
