@@ -51,7 +51,8 @@ export const booksSlice = createSlice({
     })
     builder.addCase(fetchBooksThunk.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false
-      state.error = action.payload
+      //state.error = action.payload
+      state.error = 'Something went wrong ...'
     })
   }
 })
