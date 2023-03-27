@@ -1,6 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import AdminNav from '../admin/AdminNav'
 
 export default function AuthorForm() {
-  return <>Author .....</>
+  return (
+    <>
+      <AdminNav />
+      Author .....
+    </>
+  )
 }

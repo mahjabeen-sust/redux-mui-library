@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import type { RootState, AppDispatch } from '../../store'
+import type { RootState } from '../../store'
 
 type Props = {
   email: string

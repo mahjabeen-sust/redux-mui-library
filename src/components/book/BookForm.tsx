@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import AdminNav from '../admin/AdminNav'
 import type { RootState, AppDispatch } from '../../store'
-import { fetchBooksThunk, addNewBook } from '../../features/books/booksSlice'
+import { addNewBook } from '../../features/books/booksSlice'
 
 const BookForm = () => {
   const { books } = useSelector((state: RootState) => state)
@@ -21,8 +20,6 @@ const BookForm = () => {
     borrowDate: null,
     returnDate: null
   })
-
-  const navigate = useNavigate()
 
   const dispatch = useDispatch<AppDispatch>()
 
