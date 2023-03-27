@@ -8,10 +8,10 @@ export type Book = {
   publisher: string
   authors: string
   status: boolean
-  borrowerId: string
-  publishDate: Date
-  borrowDate: Date
-  returnDate: Date
+  borrowerId: string | null
+  publishDate: Date | null
+  borrowDate: Date | null
+  returnDate: Date | null
 }
 
 export interface BookState {
@@ -26,7 +26,7 @@ const initialState: BookState = {
   error: null
 }
 
-const BOOKS_PLACEHOLDER_API = 'http://localhost:3000/books.json'
+const BOOKS_PLACEHOLDER_API = 'http://localhost:3000/books-small.json'
 
 //ACTION
 
@@ -45,7 +45,13 @@ export const fetchBooksThunk = createAsyncThunk('books/fetch', async (data, thun
 export const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    addNewBook: (state, action: PayloadAction<Book>) => {
+      //state.items.concat(action.payload) //not wokring
+      //console.log('inside addnewbook reducer>state.items: ', state.items)
+      state.items = [action.payload, ...state.items]
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchBooksThunk.pending, (state, action) => {
       state.isLoading = true
@@ -61,4 +67,5 @@ export const booksSlice = createSlice({
   }
 })
 
+export const { addNewBook } = booksSlice.actions
 export default booksSlice.reducer

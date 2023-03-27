@@ -59,7 +59,7 @@ export const fetchUserThunk = createAsyncThunk('users/fetch', async (data, thunk
   try {
     const response = await fetch(USERS_PLACEHOLDER_API)
     const data: User[] = await response.json()
-    console.log('Found users', data)
+    //console.log('Found users', data)
 
     return data
   } catch (error: any) {

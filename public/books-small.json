@@ -1,0 +1,26 @@
+[
+  {
+    "isbn": "105669463-7",
+    "title": "Harry Potter",
+    "description": "Amazing book",
+    "publisher": "Podcat",
+    "authors": "tnorthin0",
+    "status": true,
+    "borrowerId": "jlintill0",
+    "publishDate": "8/17/2022",
+    "borrowDate": "11/6/2022",
+    "returnDate": "6/11/2022"
+  },
+  {
+    "isbn": "004260852-X",
+    "title": "Twilight Saga",
+    "description": "Average",
+    "publisher": "Jabberbean",
+    "authors": "jpinder1",
+    "status": true,
+    "borrowerId": "sbubear1",
+    "publishDate": "11/8/2022",
+    "borrowDate": "3/13/2023",
+    "returnDate": "12/20/2022"
+  }
+]
