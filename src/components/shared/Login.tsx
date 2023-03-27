@@ -6,6 +6,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { fetchUserThunk } from '../../features/login/userSlice'
 import { login } from '../../features/login/userSlice'
 import type { RootState, AppDispatch } from '../../store'
+import { isUser } from '../../features/login/userService'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -15,8 +16,8 @@ const Login = () => {
   const { handleSubmit } = useForm()
 
   const dispatch = useDispatch<AppDispatch>()
-  const users = useSelector((state: RootState) => state.auth.users)
-  const payload = users.find((user) => user.email === email && user.password === password)
+  const payload = isUser({ email, password })
+  //console.log('payload from userService', payload)
 
   useEffect(() => {
     dispatch(fetchUserThunk())

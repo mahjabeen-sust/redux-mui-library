@@ -3,11 +3,6 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 import { User } from '../../type'
 
-// initialize userToken from local storage
-const loggedInUser = localStorage.getItem('loggedInUser')
-  ? localStorage.getItem('loggedInUser')
-  : null
-
 export type LoggedInUser = string | null
 
 export interface UserState {
