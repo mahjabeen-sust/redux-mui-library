@@ -1,18 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-export type Book = {
-  isbn: string
-  title: string
-  description: string
-  publisher: string
-  authors: string
-  status: boolean
-  borrowerId: string | null
-  publishDate: Date | null
-  borrowDate: Date | null
-  returnDate: Date | null
-}
+import { Book } from '../../type'
 
 export interface BookState {
   items: Book[]

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+
 import type { RootState, AppDispatch } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBooksThunk, Book } from '../../features/books/booksSlice'
+import { fetchBooksThunk } from '../../features/books/booksSlice'
+import { Book } from '../../type'
 
 //mui
 import Card from '@mui/material/Card'

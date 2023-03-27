@@ -1,16 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { User } from '../../type'
 
 // initialize userToken from local storage
 const loggedInUser = localStorage.getItem('loggedInUser')
   ? localStorage.getItem('loggedInUser')
   : null
-
-export type User = {
-  email: string
-  password: string
-}
 
 export type LoggedInUser = string | null
 
