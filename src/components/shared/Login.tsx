@@ -27,7 +27,7 @@ const Login = () => {
     //alert('loguser')
     if (payload) {
       dispatch(login(payload.email))
-      if (payload.email === admin) {
+      if (payload.isAdmin === true) {
         navigate('/adminDashboard')
       } else {
         navigate('/dashboard')

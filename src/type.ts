@@ -3,6 +3,7 @@ import React from 'react'
 export type User = {
   email: string
   password: string
+  isAdmin: boolean
 }
 
 export type Book = {

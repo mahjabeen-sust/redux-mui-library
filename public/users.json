@@ -1,4 +1,4 @@
 [
-  { "email": "abc@gmail.com", "password": "123" },
-  { "email": "def@gmail.com", "password": "321" }
+  { "email": "abc@gmail.com", "password": "123", "isAdmin": false },
+  { "email": "def@gmail.com", "password": "321", "isAdmin": true }
 ]
