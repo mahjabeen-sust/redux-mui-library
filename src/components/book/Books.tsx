@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
-import type { RootState, AppDispatch } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBooksThunk } from '../../features/books/booksSlice'
-import { Book } from '../../type'
 
 //mui
 import Card from '@mui/material/Card'
@@ -12,10 +8,12 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-
 import Box from '@mui/system/Box'
 import Grid from '@mui/system/Unstable_Grid'
 import styled from '@mui/system/styled'
+
+import type { RootState, AppDispatch } from '../../store'
+import { fetchBooksThunk } from '../../features/books/booksSlice'
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import type { RootState, AppDispatch } from '../../store'
-import Books from '../book/Books'
 import AdminNav from './AdminNav'
 import { fetchBooksThunk } from '../../features/books/booksSlice'
 

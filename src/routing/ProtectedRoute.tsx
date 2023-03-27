@@ -1,7 +1,8 @@
 // ProtectedRoute.js
 import { useSelector } from 'react-redux'
-import type { RootState } from '../store'
 import { NavLink, Outlet } from 'react-router-dom'
+
+import type { RootState } from '../store'
 
 const ProtectedRoute = () => {
   const loggedInUser = useSelector((state: RootState) => state.auth.loggedInUser)

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import type { RootState, AppDispatch } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 
+import type { RootState, AppDispatch } from '../../store'
 import { logout } from '../../features/login/userSlice'
 
 function LoginControl() {
