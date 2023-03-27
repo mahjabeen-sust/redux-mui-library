@@ -5,7 +5,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 
 import AdminNav from '../admin/AdminNav'
 import type { RootState, AppDispatch } from '../../store'
-import { fetchBooksThunk, addNewBook } from './booksSlice'
+import { fetchBooksThunk, addNewBook } from '../../features/books/booksSlice'
 
 const BookForm = () => {
   const { books } = useSelector((state: RootState) => state)

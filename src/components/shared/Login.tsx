@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../store'
 import { useNavigate, Navigate } from 'react-router-dom'
-import { fetchUserThunk } from './userSlice'
+import { fetchUserThunk } from '../../features/login/userSlice'
 import { useForm } from 'react-hook-form'
-import { login } from './userSlice'
+import { login } from '../../features/login/userSlice'
 
 const Login = () => {
   const [email, setEmail] = useState('')

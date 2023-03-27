@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
-import Books from '../books/Books'
+import Books from '../book/Books'
 
 export default function Dashboard() {
   // Select username from store

@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import Login from './features/login/Login'
-import Dashboard from './features/login/Dashboard'
+import Login from './components/shared/Login'
+import Dashboard from './components/user/Dashboard'
 import ProtectedRoute from './routing/ProtectedRoute'
 import LoginControl from './features/login/LoginControl'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from './store'
-import AdminDashboard from './features/login/AdminDashboard'
-import BookForm from './features/books/BookForm'
+import AdminDashboard from './components/admin/AdminDashboard'
+import BookForm from './components/book/BookForm'
 import AuthorForm from './features/author/AuthorForm'
 
 /**

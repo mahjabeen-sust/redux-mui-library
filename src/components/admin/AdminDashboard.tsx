@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import type { RootState, AppDispatch } from '../../store'
-import Books from '../books/Books'
-import AdminNav from '../admin/AdminNav'
-import { fetchBooksThunk } from '../books/booksSlice'
+import Books from '../book/Books'
+import AdminNav from './AdminNav'
+import { fetchBooksThunk } from '../../features/books/booksSlice'
 
 export default function AdminDashboard() {
   // Select username from store
