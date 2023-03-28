@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import Books from './Books'
 
 import AdminNav from '../admin/AdminNav'
 import type { RootState, AppDispatch } from '../../store'
 import { addNewBook } from '../../features/books/booksSlice'
+
+//mui
+import { TextField, FormControl, Button } from '@mui/material'
 
 const BookForm = () => {
   const { books } = useSelector((state: RootState) => state)
@@ -27,21 +30,36 @@ const BookForm = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    // console.log('added book', book)
-    // //setBookList((prev) => prev.concat(book))
-    // setBookList({ ...bookList, ...book })
 
-    // console.log('book list', bookList)
-    dispatch(addNewBook(book))
+    //from mui example
+    setTitleError(false)
+    setDescriptionError(false)
+
+    if (book.title == '') {
+      setTitleError(true)
+    }
+    if (book.description == '') {
+      setDescriptionError(true)
+    }
+
+    if (book.title && book.description) {
+      dispatch(addNewBook(book))
+    }
 
     console.log('after handle submit', books.items)
   }
 
+  //from mui example
+  const [titleError, setTitleError] = useState(false)
+  const [descriptionError, setDescriptionError] = useState(false)
+
   return (
-    <div>
+    <React.Fragment>
+      <Books />
       <AdminNav />
       <form action="" className="bookForm" onSubmit={handleSubmit}>
-        <div className="form-group">
+        <h2>Add New Book Form</h2>
+        {/* <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -50,8 +68,22 @@ const BookForm = () => {
               setBook({ ...book, title: e.target.value })
             }}
           />
-        </div>
-        <div className="form-group">
+        </div> */}
+        <TextField
+          label="Title"
+          onChange={(e) => {
+            setBook({ ...book, title: e.target.value })
+          }}
+          required
+          variant="outlined"
+          color="secondary"
+          type="title"
+          sx={{ mb: 3 }}
+          fullWidth
+          value={book.title}
+          error={titleError}
+        />
+        {/* <div className="form-group">
           <label htmlFor="description">Description</label>
           <input
             type="text"
@@ -60,13 +92,27 @@ const BookForm = () => {
               setBook({ ...book, description: e.target.value })
             }}
           />
-        </div>
+        </div> */}
+        <TextField
+          label="Description"
+          onChange={(e) => {
+            setBook({ ...book, description: e.target.value })
+          }}
+          required
+          variant="outlined"
+          color="secondary"
+          type="description"
+          value={book.description}
+          error={descriptionError}
+          fullWidth
+          sx={{ mb: 3 }}
+        />
         {/* more inputs to be loaded.... */}
-        <button type="submit" className="button">
-          Add Book
-        </button>
+        <Button variant="outlined" color="secondary" type="submit">
+          Add New Book
+        </Button>
       </form>
-    </div>
+    </React.Fragment>
   )
 }
 

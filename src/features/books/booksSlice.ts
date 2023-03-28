@@ -37,8 +37,9 @@ export const booksSlice = createSlice({
   reducers: {
     addNewBook: (state, action: PayloadAction<Book>) => {
       //state.items.concat(action.payload) //not wokring
-      //console.log('inside addnewbook reducer>state.items: ', state.items)
+
       state.items = [action.payload, ...state.items]
+      console.log('inside addnewbook reducer>state.items: ', state.items)
     }
   },
   extraReducers: (builder) => {
