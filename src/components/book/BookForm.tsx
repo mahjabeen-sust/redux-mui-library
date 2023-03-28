@@ -7,7 +7,7 @@ import type { RootState, AppDispatch } from '../../store'
 import { addNewBook } from '../../features/books/booksSlice'
 
 //mui
-import { TextField, FormControl, Button } from '@mui/material'
+import { TextField, FormControl, Button, InputLabel, Select, MenuItem } from '@mui/material'
 
 const BookForm = () => {
   const { books } = useSelector((state: RootState) => state)
@@ -19,7 +19,7 @@ const BookForm = () => {
     authors: '',
     status: true,
     borrowerId: '',
-    publishDate: null,
+    publishDate: new Date(),
     borrowDate: null,
     returnDate: null
   })
@@ -70,6 +70,20 @@ const BookForm = () => {
           />
         </div> */}
         <TextField
+          label="ISBN"
+          onChange={(e) => {
+            setBook({ ...book, isbn: e.target.value })
+          }}
+          required
+          variant="outlined"
+          color="secondary"
+          type="text"
+          sx={{ mb: 3 }}
+          fullWidth
+          value={book.isbn}
+          //error={titleError}
+        />
+        <TextField
           label="Title"
           onChange={(e) => {
             setBook({ ...book, title: e.target.value })
@@ -77,7 +91,7 @@ const BookForm = () => {
           required
           variant="outlined"
           color="secondary"
-          type="title"
+          type="text"
           sx={{ mb: 3 }}
           fullWidth
           value={book.title}
@@ -101,12 +115,113 @@ const BookForm = () => {
           required
           variant="outlined"
           color="secondary"
-          type="description"
+          type="text"
           value={book.description}
           error={descriptionError}
           fullWidth
           sx={{ mb: 3 }}
         />
+        <TextField
+          label="Publisher"
+          onChange={(e) => {
+            setBook({ ...book, publisher: e.target.value })
+          }}
+          required
+          variant="outlined"
+          color="secondary"
+          type="text"
+          sx={{ mb: 3 }}
+          fullWidth
+          value={book.publisher}
+          //error={titleError}
+        />
+        <InputLabel id="author-label">Authors</InputLabel>
+        <Select
+          label="Authors"
+          required
+          labelId="author-label"
+          id="author-select"
+          value={book.authors}
+          onChange={(e) => {
+            setBook({ ...book, authors: e.target.value })
+          }}>
+          <MenuItem value="author1" selected>
+            Author1
+          </MenuItem>
+          <MenuItem value="author2">Author2</MenuItem>
+          <MenuItem value="author3">Author3</MenuItem>
+        </Select>
+
+        <InputLabel id="status-label">Status</InputLabel>
+        <Select
+          label="Status"
+          required
+          labelId="status-label"
+          id="status-select"
+          value={book.status}
+          onChange={(e) => {
+            setBook({ ...book, status: e.target.value as any })
+          }}>
+          <MenuItem value={true as any} selected>
+            Available
+          </MenuItem>
+          <MenuItem value={false as any}>Borrowed</MenuItem>
+        </Select>
+
+        <TextField
+          label="Borrower Id"
+          onChange={(e) => {
+            setBook({ ...book, borrowerId: e.target.value })
+          }}
+          variant="outlined"
+          color="secondary"
+          type="text"
+          sx={{ mb: 3 }}
+          fullWidth
+          value={book.borrowerId}
+          //error={titleError}
+        />
+        <TextField
+          type="date"
+          id="publish-date"
+          variant="outlined"
+          color="secondary"
+          label="Publish Date"
+          onChange={(e) => {
+            setBook({ ...book, publishDate: e.target.value as any })
+          }}
+          value={book.publishDate}
+          fullWidth
+          required
+          sx={{ mb: 4 }}
+        />
+        <TextField
+          type="date"
+          id="borrow-date"
+          variant="outlined"
+          color="secondary"
+          label="Borrow Date"
+          onChange={(e) => {
+            setBook({ ...book, borrowDate: e.target.value as any })
+          }}
+          value={book.borrowDate}
+          fullWidth
+          sx={{ mb: 4 }}
+        />
+        <TextField
+          type="date"
+          id="return-date"
+          variant="outlined"
+          color="secondary"
+          label="Return Date"
+          onChange={(e) => {
+            setBook({ ...book, returnDate: e.target.value as any })
+          }}
+          value={book.returnDate}
+          fullWidth
+          sx={{ mb: 4 }}
+        />
+
         {/* more inputs to be loaded.... */}
         <Button variant="outlined" color="secondary" type="submit">
           Add New Book

@@ -14,7 +14,7 @@ export type Book = {
   authors: string
   status: boolean
   borrowerId: string | null
-  publishDate: Date | null
+  publishDate: Date
   borrowDate: Date | null
   returnDate: Date | null
 }
