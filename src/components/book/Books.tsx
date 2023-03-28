@@ -28,6 +28,9 @@ const Books = () => {
   const { books } = useSelector((state: RootState) => state)
   const dispatch = useDispatch<AppDispatch>()
 
+  //check if user is admin
+  const loggedInUser = useSelector((state: RootState) => state.auth.loggedInUser)
+
   useEffect(() => {
     dispatch(fetchBooksThunk())
   }, [])
@@ -40,9 +43,9 @@ const Books = () => {
         {books.items.map((book) => (
           <Grid xs={2} sm={4} key={book.isbn}>
             <Item>
-              <Card sx={{ maxWidth: 345, p: 2, minHeight: 430 }}>
+              <Card sx={{ maxWidth: 345, p: 2, minHeight: 200 }}>
                 <CardMedia
-                  sx={{ height: 140 }}
+                  sx={{ height: 100 }}
                   image="/assets/images/book-image.jpg"
                   title={book.title}
                 />
@@ -51,13 +54,30 @@ const Books = () => {
                     {book.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {book.description.substring(0, 200)}
+                    By - {book.authors}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Publisher :{book.publisher}
                   </Typography>
                   <Typography gutterBottom variant="h6" component="span">
                     {book.status ? 'Available' : 'Borrowed'}
                   </Typography>
                 </CardContent>
-                <CardActions>{book.status ? <Button size="small">Borrow</Button> : ''}</CardActions>
+                {/* if user is not admin */}
+                <CardActions>
+                  {loggedInUser?.isAdmin === false && book.status ? (
+                    <Button size="small">Borrow</Button>
+                  ) : (
+                    ''
+                  )}
+                </CardActions>
+                {/* edit, delete button for admin */}
+                <CardActions>
+                  {loggedInUser?.isAdmin ? <Button size="small">Edit</Button> : ''}
+                </CardActions>
+                <CardActions>
+                  {loggedInUser?.isAdmin ? <Button size="small">Delete</Button> : ''}
+                </CardActions>
               </Card>
             </Item>
           </Grid>

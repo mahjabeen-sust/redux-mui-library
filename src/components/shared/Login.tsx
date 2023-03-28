@@ -11,11 +11,12 @@ import { isUser } from '../../features/login/userService'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const admin = 'def@gmail.com'
+
   const navigate = useNavigate()
   const { handleSubmit } = useForm()
 
   const dispatch = useDispatch<AppDispatch>()
+  //checking if user exists
   const payload = isUser({ email, password })
   //console.log('payload from userService', payload)
 
