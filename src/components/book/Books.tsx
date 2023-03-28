@@ -13,7 +13,8 @@ import Grid from '@mui/system/Unstable_Grid'
 import styled from '@mui/system/styled'
 
 import type { RootState, AppDispatch } from '../../store'
-import { fetchBooksThunk } from '../../features/books/booksSlice'
+import { fetchBooksThunk, deleteBook } from '../../features/books/booksSlice'
+import { string } from 'zod'
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -76,7 +77,17 @@ const Books = () => {
                   {loggedInUser?.isAdmin ? <Button size="small">Edit</Button> : ''}
                 </CardActions>
                 <CardActions>
-                  {loggedInUser?.isAdmin ? <Button size="small">Delete</Button> : ''}
+                  {loggedInUser?.isAdmin ? (
+                    <Button
+                      size="small"
+                      onClick={() => {
+                        dispatch(deleteBook(book.isbn))
+                      }}>
+                      Delete
+                    </Button>
+                  ) : (
+                    ''
+                  )}
                 </CardActions>
               </Card>
             </Item>

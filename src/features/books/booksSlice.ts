@@ -40,6 +40,10 @@ export const booksSlice = createSlice({
 
       state.items = [action.payload, ...state.items]
       console.log('inside addnewbook reducer>state.items: ', state.items)
+    },
+    deleteBook: (state, action: PayloadAction<string>) => {
+      console.log('action.payload =', action.payload) // returns correct id
+      state.items = state.items.filter((prev) => prev.isbn !== action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -58,5 +62,5 @@ export const booksSlice = createSlice({
   }
 })
 
-export const { addNewBook } = booksSlice.actions
+export const { addNewBook, deleteBook } = booksSlice.actions
 export default booksSlice.reducer
