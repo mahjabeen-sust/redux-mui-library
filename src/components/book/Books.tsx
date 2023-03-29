@@ -15,6 +15,7 @@ import styled from '@mui/system/styled'
 import type { RootState, AppDispatch } from '../../store'
 import { fetchBooksThunk, deleteBook } from '../../features/books/booksSlice'
 import { string } from 'zod'
+import EditBookForm from './EditBookForm'
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,6 +29,20 @@ const Item = styled('div')(({ theme }) => ({
 const Books = () => {
   const { books } = useSelector((state: RootState) => state)
   const dispatch = useDispatch<AppDispatch>()
+  const [edit, setEdit] = useState(false)
+  const [updateBookIsbn, setUpdateBookIsbn] = useState<null | string>()
+  // const [editableBook, setEditableBook] = useState({
+  //   isbn: '',
+  //   title: '',
+  //   description: '',
+  //   publisher: '',
+  //   authors: '',
+  //   status: false,
+  //   borrowerId: null,
+  //   publishDate: new Date(),
+  //   borrowDate: new Date(),
+  //   returnDate: new Date()
+  // })
 
   //check if user is admin
   const loggedInUser = useSelector((state: RootState) => state.auth.loggedInUser)
@@ -35,6 +50,18 @@ const Books = () => {
   useEffect(() => {
     dispatch(fetchBooksThunk())
   }, [])
+
+  const bookToBeUpdated = books.items.find((book) => {
+    if (book.isbn === updateBookIsbn) return book
+  })
+
+  console.log('book to be updated, ', bookToBeUpdated)
+  //handle edit
+  const handleEdit = (isbn: string) => {
+    alert('hi')
+    setUpdateBookIsbn(isbn)
+    console.log('set isbn, ', updateBookIsbn)
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -72,24 +99,8 @@ const Books = () => {
                     ''
                   )}
                 </CardActions>
-                {/* edit, delete button for admin */}
-                <CardActions>
-                  {loggedInUser?.isAdmin ? <Button size="small">Edit</Button> : ''}
-                </CardActions>
-                <CardActions>
-                  {loggedInUser?.isAdmin ? (
-                    <Button
-                      size="small"
-                      onClick={() => {
-                        dispatch(deleteBook(book.isbn))
-                      }}>
-                      Delete
-                    </Button>
-                  ) : (
-                    ''
-                  )}
-                </CardActions>
               </Card>
+              {/* {edit && <EditBookForm {...book} />} */}
             </Item>
           </Grid>
         ))}

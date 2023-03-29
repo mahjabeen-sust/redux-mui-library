@@ -39,11 +39,24 @@ export const booksSlice = createSlice({
       //state.items.concat(action.payload) //not wokring
 
       state.items = [action.payload, ...state.items]
-      console.log('inside addnewbook reducer>state.items: ', state.items)
+      //console.log('inside addnewbook reducer>state.items: ', state.items)
     },
     deleteBook: (state, action: PayloadAction<string>) => {
-      console.log('action.payload =', action.payload) // returns correct id
+      //console.log('action.payload =', action.payload) // returns correct id
       state.items = state.items.filter((prev) => prev.isbn !== action.payload)
+    },
+    editBook: (state, action: PayloadAction<Book>) => {
+      //console.log('action payload', action.payload)
+      state.items = state.items.map((item) => {
+        if (item.isbn === action.payload.isbn) {
+          return action.payload
+        }
+
+        return item
+        //item updated successfully but state not
+      })
+      //;`enter code here`
+      //console.log('updated books', state.items)
     }
   },
   extraReducers: (builder) => {
@@ -62,5 +75,5 @@ export const booksSlice = createSlice({
   }
 })
 
-export const { addNewBook, deleteBook } = booksSlice.actions
+export const { addNewBook, deleteBook, editBook } = booksSlice.actions
 export default booksSlice.reducer

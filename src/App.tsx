@@ -7,6 +7,7 @@ import LoginControl from './components/shared/LoginControl'
 import AdminDashboard from './components/admin/AdminDashboard'
 import BookForm from './components/book/BookForm'
 import AuthorForm from './components/author/AuthorForm'
+import EditBook from './components/book/EditBook'
 
 /**
  * https://stackoverflow.com/questions/71885505/react-router-v6-no-routes-matched-location
@@ -53,7 +54,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/adminDashboard" element={<AdminDashboard />} />
                 <Route path="/addBook" element={<BookForm />} />
-                <Route path="/updateBook" element={<BookForm />} />
+                <Route path="/updateBook" element={<EditBook />} />
                 <Route path="/addAuthor" element={<AuthorForm />} />
                 <Route path="/updateAuthor" element={<AuthorForm />} />
               </Route>

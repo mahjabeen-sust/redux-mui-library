@@ -1,30 +1,35 @@
 import React, { useState, ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import AdminNav from '../admin/AdminNav'
 import type { AppDispatch } from '../../store'
-import { addNewBook } from '../../features/books/booksSlice'
-import Books from './Books'
+import { editBook } from '../../features/books/booksSlice'
+import { Book } from '../../type'
 
 //mui
-import { TextField, FormControl, Button, InputLabel, Select, MenuItem } from '@mui/material'
+import { TextField, Button, InputLabel, Select, MenuItem } from '@mui/material'
 
-const BookForm = () => {
-  const [newBook, setNewBook] = useState({
-    isbn: '',
-    title: '',
-    description: '',
-    publisher: '',
-    authors: '',
-    status: true,
-    borrowerId: '',
-    publishDate: new Date(),
-    borrowDate: null,
-    returnDate: null
-  })
+import styled from '@mui/system/styled'
+
+function EditBookForm(props: Book) {
+  //console.log('received book', props)
 
   const dispatch = useDispatch<AppDispatch>()
 
+  //setting values for book
+  const [newBook, setNewBook] = useState({
+    isbn: props.isbn,
+    title: props.title,
+    description: props.description,
+    publisher: props.publisher,
+    authors: props.authors,
+    status: props.status,
+    borrowerId: props.borrowerId,
+    publishDate: props.publishDate,
+    borrowDate: props.borrowDate,
+    returnDate: props.returnDate
+  })
+
+  //console.log('newBook: ', newBook)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value
     let name = e.target.name
@@ -49,9 +54,10 @@ const BookForm = () => {
     }
 
     if (newBook.title && newBook.description) {
-      dispatch(addNewBook(newBook))
-      //;<Link to="/adminDashboard">Go back to dashboard</Link>
+      dispatch(editBook(newBook))
     }
+
+    //console.log('after handle edit', books.items)
   }
 
   //from mui example
@@ -60,11 +66,8 @@ const BookForm = () => {
 
   return (
     <React.Fragment>
-      <AdminNav />
-      <Books />
-
       <form action="" className="bookForm" onSubmit={handleSubmit}>
-        <h2>Add New Book Form</h2>
+        <h2>Edit Book Form</h2>
 
         <TextField
           label="ISBN"
@@ -119,12 +122,14 @@ const BookForm = () => {
           value={newBook.publisher}
           //error={titleError}
         />
-        <InputLabel id="author-add-label">Authors</InputLabel>
+        <InputLabel id="author-edit-label">Authors</InputLabel>
         <Select
           label="Authors"
           name="authors"
           value={newBook.authors}
           required
+          labelId="author-edit-label"
+          id="author-edit-select"
           onChange={handleChange}>
           <MenuItem value={newBook.authors} selected>
             {newBook.authors}
@@ -134,11 +139,13 @@ const BookForm = () => {
           <MenuItem value="author3">Author3</MenuItem>
         </Select>
 
-        <InputLabel id="status-add-label">Status</InputLabel>
+        <InputLabel id="status-edit-label">Status</InputLabel>
         <Select
           label="Status"
           name="status"
           required
+          labelId="status-edit-label"
+          id="status-edit-select"
           value={newBook.status}
           onChange={handleChange}>
           <MenuItem value={newBook.status as any} selected>
@@ -163,7 +170,7 @@ const BookForm = () => {
         <TextField
           type="date"
           name="publishDate"
-          id="publish-date"
+          id="publish-date-edit"
           variant="outlined"
           color="secondary"
           label="Publish Date"
@@ -176,7 +183,7 @@ const BookForm = () => {
         <TextField
           type="date"
           name="borrowDate"
-          id="borrow-date"
+          id="borrow-date-edit"
           variant="outlined"
           color="secondary"
           label="Borrow Date"
@@ -188,7 +195,7 @@ const BookForm = () => {
         <TextField
           type="date"
           name="returnDate"
-          id="return-date"
+          id="return-date-edit"
           variant="outlined"
           color="secondary"
           label="Return Date"
@@ -200,11 +207,11 @@ const BookForm = () => {
 
         {/* more inputs to be loaded.... */}
         <Button variant="outlined" color="secondary" type="submit">
-          Add New Book
+          Submit
         </Button>
       </form>
     </React.Fragment>
   )
 }
 
-export default BookForm
+export default EditBookForm
