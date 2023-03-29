@@ -48,9 +48,9 @@ const EditBook = () => {
   }
   //console.log('set isbn, ', updateBookIsbn)
 
-  useEffect(() => {
-    dispatch(fetchBooksThunk())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(fetchBooksThunk())
+  // }, [])
 
   return (
     <React.Fragment>

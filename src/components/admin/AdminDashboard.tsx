@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { RootState, AppDispatch } from '../../store'
 import AdminNav from './AdminNav'
 import { fetchBooksThunk } from '../../features/books/booksSlice'
+import { fetchAuthorsThunk } from '../../features/authors/authorsSlice'
 
 export default function AdminDashboard() {
   // Select username from store
@@ -13,6 +14,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     dispatch(fetchBooksThunk())
+    dispatch(fetchAuthorsThunk())
   }, [])
   return (
     <>

@@ -18,3 +18,8 @@ export type Book = {
   borrowDate: Date | null
   returnDate: Date | null
 }
+
+export type Author = {
+  id: number
+  authorName: string
+}
