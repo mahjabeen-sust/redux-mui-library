@@ -6,7 +6,6 @@ export type User = {
   email: string
   password: string
   isAdmin: boolean
-  isBanned: boolean
 }
 
 export type Book = {
