@@ -10,7 +10,9 @@ export default function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <h2>Welcome {user?.email}</h2>
+      <h2>
+        Welcome {user?.firstName} {user?.lastName}
+      </h2>
       {/* <Link to="/login">Log out</Link> */}
       <Books />
     </div>

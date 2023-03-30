@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import AdminNav from '../admin/AdminNav'
 import type { RootState, AppDispatch } from '../../store'
-import { addNewAuthor } from '../../features/authors/authorsSlice'
+import { fetchAuthorsThunk, addNewAuthor } from '../../features/authors/authorsSlice'
 
 //mui
 import { TextField, Button } from '@mui/material'
@@ -43,6 +43,10 @@ export default function AuthorForm() {
     }
   }
   const [nameError, setNameError] = useState(false)
+
+  useEffect(() => {
+    dispatch(fetchAuthorsThunk())
+  }, [])
 
   return (
     <React.Fragment>

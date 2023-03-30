@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import AdminNav from '../admin/AdminNav'
 import type { RootState, AppDispatch } from '../../store'
-import { editAuthor, deleteAuthor } from '../../features/authors/authorsSlice'
+import { fetchAuthorsThunk, editAuthor, deleteAuthor } from '../../features/authors/authorsSlice'
 
 //mui
 import { TextField, Button } from '@mui/material'
@@ -51,6 +51,10 @@ export default function EditAuthorForm() {
     }
   }
   const [nameError, setNameError] = useState(false)
+
+  useEffect(() => {
+    dispatch(fetchAuthorsThunk())
+  }, [])
 
   return (
     <div>

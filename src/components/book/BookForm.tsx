@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import AdminNav from '../admin/AdminNav'
 import type { AppDispatch } from '../../store'
-import { addNewBook } from '../../features/books/booksSlice'
+import { fetchBooksThunk, addNewBook } from '../../features/books/booksSlice'
 import Books from './Books'
 
 //mui
@@ -57,6 +57,10 @@ const BookForm = () => {
   //from mui example
   const [titleError, setTitleError] = useState(false)
   const [descriptionError, setDescriptionError] = useState(false)
+
+  useEffect(() => {
+    dispatch(fetchBooksThunk())
+  }, [])
 
   return (
     <React.Fragment>

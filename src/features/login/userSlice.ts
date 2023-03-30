@@ -8,13 +8,15 @@ export interface UserState {
   loggedInUser: User | null
   isLoading: boolean
   error: string | null
+  isBanned: User[]
 }
 
 const initialState: UserState = {
   users: [],
   loggedInUser: null,
   isLoading: false,
-  error: null
+  error: null,
+  isBanned: []
 }
 const USERS_PLACEHOLDER_API = 'http://localhost:3000/users.json'
 
@@ -67,6 +69,19 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.loggedInUser = null
       //console.log('inside logout reducer>state.loggedInUser: ', state.loggedInUser)
+    },
+    ban: (state, action: PayloadAction<User>) => {
+      //adding to isBanned
+      state.isBanned = [action.payload, ...state.isBanned]
+      //deleting from users
+      state.users = state.users.filter((prev) => prev.email !== action.payload.email)
+    },
+    unBan: (state, action: PayloadAction<User>) => {
+      //console.log('action.payload =', action.payload) // returns correct id
+      //deleting from isBanned
+      state.isBanned = state.isBanned.filter((prev) => prev.email !== action.payload.email)
+      //adding to user
+      state.users = [action.payload, ...state.users]
     }
   },
   extraReducers: (builder) => {
@@ -87,6 +102,6 @@ export const userSlice = createSlice({
   }
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, ban, unBan } = userSlice.actions
 
 export default userSlice.reducer

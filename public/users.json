@@ -1,4 +1,23 @@
 [
-  { "email": "abc@gmail.com", "password": "123", "isAdmin": false },
-  { "email": "def@gmail.com", "password": "321", "isAdmin": true }
+  {
+    "firstName": "Mahjabeen",
+    "lastName": "Akter",
+    "email": "abc@gmail.com",
+    "password": "123",
+    "isAdmin": false
+  },
+  {
+    "firstName": "Mr.",
+    "lastName": "Admin",
+    "email": "admin@gmail.com",
+    "password": "123",
+    "isAdmin": true
+  },
+  {
+    "firstName": "Lubaynah",
+    "lastName": "Mahbub",
+    "email": "lub@gmail.com",
+    "password": "321",
+    "isAdmin": false
+  }
 ]

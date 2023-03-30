@@ -15,6 +15,9 @@ export default function AdminDashboard() {
       <li>
         <Link to="/updateAuthor">Update Author</Link>
       </li>
+      <li>
+        <Link to="/manageUser">Users List</Link>
+      </li>
     </ul>
   )
 }

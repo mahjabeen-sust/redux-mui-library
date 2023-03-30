@@ -9,6 +9,7 @@ import BookForm from './components/book/BookForm'
 import EditBook from './components/book/EditBook'
 import AuthorForm from './components/author/AuthorForm'
 import EditAuthorForm from './components/author/EditAuthorForm'
+import UsersList from './components/user/UsersList'
 
 /**
  * https://stackoverflow.com/questions/71885505/react-router-v6-no-routes-matched-location
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/updateBook" element={<EditBook />} />
                 <Route path="/addAuthor" element={<AuthorForm />} />
                 <Route path="/updateAuthor" element={<EditAuthorForm />} />
+                <Route path="/manageUser" element={<UsersList />} />
               </Route>
             </Routes>
           </Wrapper>
