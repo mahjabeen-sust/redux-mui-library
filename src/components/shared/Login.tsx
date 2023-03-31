@@ -42,7 +42,12 @@ const Login = () => {
     <form action="" className="login" onSubmit={handleSubmit(logUser)}>
       <div className="form-group">
         <label htmlFor="email">Email</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          placeholder="Email"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>

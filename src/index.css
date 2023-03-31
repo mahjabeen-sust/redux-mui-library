@@ -28,7 +28,12 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  margin: 0 auto;
+  width: 900px;
+}
+
+#root {
+  width: 100%;
 }
 
 h1 {
@@ -66,4 +71,116 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Custom CSS Code */
+
+.container-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Three columns */
+  gap: 20px; /*It creates gap between row and column*/
+}
+
+.container-grid.cols-two {
+  grid-template-columns: 1fr 1fr; /* Three columns */
+}
+
+.container-grid.cols-three {
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+}
+
+.container-grid.cols-four {
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Three columns */
+}
+
+.item {
+  background: lightgoldenrodyellow;
+  color: black;
+  padding: 20px;
+}
+
+.first-child-two-rows {
+  clear: both;
+}
+
+.first-child-two-rows .item:first-child {
+  background-color: tomato;
+  display: grid;
+  grid-row: span 2;
+  align-content: center; /*This will going to put the content middle of the grid*/
+}
+
+/* Common */
+
+.pl-24 {
+  padding-left: 24px !important;
+}
+
+/* Grid */
+
+.main-container {
+  margin-top: 32px !important;
+}
+/* Admin Navigation menu */
+
+.admin-nav-container {
+  background-color: lightblue;
+  padding: 12px !important;
+  min-height: 500px;
+}
+
+.admin-nav-menu {
+  clear: both;
+}
+
+.admin-nav-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px 0;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-nav-menu ul li {
+  background: gray;
+}
+
+.admin-nav-menu ul li a {
+  color: #f9f9f9;
+  padding: 12px 12px;
+  display: block;
+}
+
+.admin-nav-menu ul li a:hover {
+  color: #1a1a1a;
+  background: lightslategray;
+}
+
+/* Login page */
+
+.login {
+  display: flex;
+  padding: 24px;
+  background-color: lightgray;
+  gap: 0 12px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.login label {
+  margin-right: 12px;
+}
+
+.login input[type='text'],
+.login input[type='password'] {
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid lightgoldenrodyellow;
+}
+.login input[type='text'] {
+}
+
+.login input[type='password'] {
 }

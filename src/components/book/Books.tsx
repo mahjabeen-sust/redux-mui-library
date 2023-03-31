@@ -13,9 +13,8 @@ import Grid from '@mui/system/Unstable_Grid'
 import styled from '@mui/system/styled'
 
 import type { RootState, AppDispatch } from '../../store'
-import { fetchBooksThunk, deleteBook } from '../../features/books/booksSlice'
+import { fetchBooksThunk } from '../../features/books/booksSlice'
 import { string } from 'zod'
-import EditBookForm from './EditBookForm'
 
 const Item = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,8 +28,7 @@ const Item = styled('div')(({ theme }) => ({
 const Books = () => {
   const { books } = useSelector((state: RootState) => state)
   const dispatch = useDispatch<AppDispatch>()
-  const [edit, setEdit] = useState(false)
-  const [updateBookIsbn, setUpdateBookIsbn] = useState<null | string>()
+
   // const [editableBook, setEditableBook] = useState({
   //   isbn: '',
   //   title: '',
@@ -51,18 +49,6 @@ const Books = () => {
     dispatch(fetchBooksThunk())
   }, [])
 
-  const bookToBeUpdated = books.items.find((book) => {
-    if (book.isbn === updateBookIsbn) return book
-  })
-
-  console.log('book to be updated, ', bookToBeUpdated)
-  //handle edit
-  const handleEdit = (isbn: string) => {
-    alert('hi')
-    setUpdateBookIsbn(isbn)
-    console.log('set isbn, ', updateBookIsbn)
-  }
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       {books.isLoading ? <span>Loading .... </span> : ''}
@@ -70,38 +56,30 @@ const Books = () => {
         {/* {Array.from(Array(50)).map((_, index) => ( */}
         {books.items.map((book) => (
           <Grid xs={2} sm={4} key={book.isbn}>
-            <Item>
-              <Card sx={{ maxWidth: 345, p: 2, minHeight: 200 }}>
-                <CardMedia
-                  sx={{ height: 100 }}
-                  image="/assets/images/book-image.jpg"
-                  title={book.title}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {book.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    By - {book.authors}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Publisher :{book.publisher}
-                  </Typography>
-                  <Typography gutterBottom variant="h6" component="span">
-                    {book.status ? 'Available' : 'Borrowed'}
-                  </Typography>
-                </CardContent>
-                {/* if user is not admin */}
-                <CardActions>
-                  {loggedInUser?.isAdmin === false && book.status ? (
-                    <Button size="small">Borrow</Button>
-                  ) : (
-                    ''
-                  )}
-                </CardActions>
-              </Card>
-              {/* {edit && <EditBookForm {...book} />} */}
-            </Item>
+            {/* <Item> */}
+            <Card sx={{ maxWidth: 345, p: 0, minHeight: 200 }}>
+              <CardMedia
+                sx={{ height: 100 }}
+                image="/assets/images/book-image.jpg"
+                title={book.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h4">
+                  {book.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  By - {book.authors}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Publisher :{book.publisher}
+                </Typography>
+                <Typography gutterBottom variant="h6" component="span">
+                  {book.status ? 'Available' : 'Borrowed'}
+                </Typography>
+              </CardContent>
+            </Card>
+            {/* {edit && <EditBookForm {...book} />} */}
+            {/* </Item> */}
           </Grid>
         ))}
       </Grid>

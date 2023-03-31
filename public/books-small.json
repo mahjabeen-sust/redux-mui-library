@@ -6,10 +6,10 @@
     "publisher": "Podcat",
     "authors": "tnorthin0",
     "status": true,
-    "borrowerId": "jlintill0",
+    "borrowerId": null,
     "publishDate": "8/17/2022",
-    "borrowDate": "11/6/2022",
-    "returnDate": "6/11/2022"
+    "borrowDate": null,
+    "returnDate": null
   },
   {
     "isbn": "004260852-X",
@@ -18,9 +18,9 @@
     "publisher": "Jabberbean",
     "authors": "jpinder1",
     "status": true,
-    "borrowerId": "sbubear1",
+    "borrowerId": null,
     "publishDate": "11/8/2022",
-    "borrowDate": "3/13/2023",
-    "returnDate": "12/20/2022"
+    "borrowDate": null,
+    "returnDate": null
   }
 ]

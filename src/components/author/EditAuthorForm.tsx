@@ -7,6 +7,7 @@ import { fetchAuthorsThunk, editAuthor, deleteAuthor } from '../../features/auth
 
 //mui
 import { TextField, Button } from '@mui/material'
+import Grid from '@mui/material/Grid'
 
 export default function EditAuthorForm() {
   const dispatch = useDispatch<AppDispatch>()
@@ -26,6 +27,7 @@ export default function EditAuthorForm() {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value
     let name = e.target.name
+    // console.log(value)
     setNewAuthor((prev) => ({
       ...prev,
       [name]: value
@@ -58,52 +60,61 @@ export default function EditAuthorForm() {
 
   return (
     <div>
-      <AdminNav />
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={{ xs: 1, sm: 0, md: 0 }}
+        className="main-container">
+        <Grid item xs={3} className="admin-nav-container">
+          <AdminNav />
+        </Grid>
+        <Grid item xs={9} className="pl-24">
+          <ul>
+            {authors.items.map((author) => (
+              <li key={author.id}>
+                {author.authorName}
+                <Button size="small" onClick={() => handleEdit(author.id)}>
+                  Edit
+                </Button>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    dispatch(deleteAuthor(author.id))
+                  }}>
+                  Delete
+                </Button>
+              </li>
+            ))}
+          </ul>
 
-      <ul>
-        {authors.items.map((author) => (
-          <li key={author.id}>
-            {author.authorName}
-            <Button size="small" onClick={() => handleEdit(author.id)}>
-              Edit
-            </Button>
-            <Button
-              size="small"
-              onClick={() => {
-                dispatch(deleteAuthor(author.id))
-              }}>
-              Delete
-            </Button>
-          </li>
-        ))}
-      </ul>
+          {/* author add form */}
+          {authorToBeUpdated && (
+            <React.Fragment>
+              <form action="" className="authorEditForm" onSubmit={handleSubmit}>
+                <h2>Edit Author</h2>
 
-      {/* author add form */}
-      {authorToBeUpdated && (
-        <React.Fragment>
-          <form action="" className="authorEditForm" onSubmit={handleSubmit}>
-            <h2>Edit Author</h2>
-
-            <TextField
-              label="Name"
-              name="authorName"
-              onChange={handleChange}
-              required
-              variant="outlined"
-              color="secondary"
-              type="text"
-              sx={{ mb: 3 }}
-              fullWidth
-              value={authorToBeUpdated.authorName}
-              placeholder="placeholder"
-              //error={nameError}
-            />
-            <Button variant="outlined" color="secondary" type="submit">
-              Submit
-            </Button>
-          </form>
-        </React.Fragment>
-      )}
+                <TextField
+                  label="Name"
+                  name="authorName"
+                  onChange={handleChange}
+                  required
+                  variant="outlined"
+                  color="secondary"
+                  type="text"
+                  sx={{ mb: 3 }}
+                  fullWidth
+                  value={authorToBeUpdated.authorName}
+                  placeholder="placeholder"
+                  //error={nameError}
+                />
+                <Button variant="outlined" color="secondary" type="submit">
+                  Submit
+                </Button>
+              </form>
+            </React.Fragment>
+          )}
+        </Grid>
+      </Grid>
     </div>
   )
 }

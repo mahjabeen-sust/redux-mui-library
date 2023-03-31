@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { Book } from '../../type'
+import { Book, User } from '../../type'
 
 export interface BookState {
   items: Book[]
@@ -57,6 +57,32 @@ export const booksSlice = createSlice({
       })
       //;`enter code here`
       //console.log('updated books', state.items)
+    },
+    borrowBook: (state, action: PayloadAction<Book>) => {
+      //console.log('action.payload inside borrowBook:isbn', action.payload.isbn) // returns correct id
+
+      state.items = state.items.map((item) => {
+        //payload matches a book
+        if (item.isbn === action.payload.isbn) {
+          return action.payload
+        }
+
+        return item
+      })
+      //console.log('after borrowing>state of books', state.items)
+    },
+    bookReturn: (state, action: PayloadAction<Book>) => {
+      //console.log('action.payload inside borrowBook:isbn', action.payload.isbn) // returns correct id
+
+      state.items = state.items.map((item) => {
+        //payload matches a book
+        if (item.isbn === action.payload.isbn) {
+          return action.payload
+        }
+
+        return item
+      })
+      console.log('after returning>state of books', state.items)
     }
   },
   extraReducers: (builder) => {
@@ -75,5 +101,5 @@ export const booksSlice = createSlice({
   }
 })
 
-export const { addNewBook, deleteBook, editBook } = booksSlice.actions
+export const { addNewBook, deleteBook, editBook, borrowBook, bookReturn } = booksSlice.actions
 export default booksSlice.reducer

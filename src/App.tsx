@@ -10,12 +10,16 @@ import EditBook from './components/book/EditBook'
 import AuthorForm from './components/author/AuthorForm'
 import EditAuthorForm from './components/author/EditAuthorForm'
 import UsersList from './components/user/UsersList'
+import BorrowedBooks from './components/user/BorrowedBooks'
+import Books from './components/book/Books'
+import { useSelector } from 'react-redux'
+import type { RootState } from './store'
 
 /**
  * https://stackoverflow.com/questions/71885505/react-router-v6-no-routes-matched-location
  */
 
-const Home = () => <h1>Home</h1>
+const Home = () => <></>
 const Logout = () => (
   <ul>
     <li>You have successfully logged out!</li>
@@ -37,6 +41,8 @@ const Wrapper = ({ children }: any) => children
 // )
 
 function App() {
+  const user = useSelector((state: RootState) => state.auth.loggedInUser)
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -54,6 +60,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/borrowedBooks" element={<BorrowedBooks />} />
                 <Route path="/adminDashboard" element={<AdminDashboard />} />
                 <Route path="/addBook" element={<BookForm />} />
                 <Route path="/updateBook" element={<EditBook />} />
@@ -63,6 +70,7 @@ function App() {
               </Route>
             </Routes>
           </Wrapper>
+          {!user ? <Books /> : ''}
         </div>
       </BrowserRouter>
     </div>
