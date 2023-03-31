@@ -72,7 +72,7 @@ const EditBook = () => {
               {/* {Array.from(Array(50)).map((_, index) => ( */}
               {books.items.map((book) => (
                 <Grid xs={2} sm={4} key={book.isbn}>
-                  <Card sx={{ maxWidth: 345, p: 0, minHeight: 200 }}>
+                  <Card sx={{ maxWidth: 345, p: 2, minHeight: 200 }}>
                     <CardMedia
                       sx={{ height: 100 }}
                       image="/assets/images/book-image.jpg"
@@ -88,20 +88,24 @@ const EditBook = () => {
                       <Typography variant="body2" color="text.secondary">
                         Publisher :{book.publisher}
                       </Typography>
-                      <Typography gutterBottom variant="h6" component="span">
+                      <Typography gutterBottom component="span">
                         {book.status ? 'Available' : 'Borrowed'}
                       </Typography>
                     </CardContent>
 
                     {/* edit, delete button for admin */}
                     <CardActions>
-                      <Button size="small" onClick={() => handleEdit(book.isbn)}>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        onClick={() => handleEdit(book.isbn)}>
                         Edit
                       </Button>
                     </CardActions>
                     <CardActions>
                       <Button
                         size="small"
+                        variant="contained"
                         onClick={() => {
                           dispatch(deleteBook(book.isbn))
                         }}>

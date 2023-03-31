@@ -77,7 +77,7 @@ const BookForm = () => {
           <Books />
 
           <form action="" className="bookForm" onSubmit={handleSubmit}>
-            <h2>Add New Book Form</h2>
+            <h2>Add New Book</h2>
 
             <TextField
               label="ISBN"

@@ -69,7 +69,7 @@ export default function EditAuthorForm() {
           <AdminNav />
         </Grid>
         <Grid item xs={9} className="pl-24">
-          <ul>
+          <ul className="author-list">
             {authors.items.map((author) => (
               <li key={author.id}>
                 {author.authorName}

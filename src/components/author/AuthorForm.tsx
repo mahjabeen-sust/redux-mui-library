@@ -60,7 +60,7 @@ export default function AuthorForm() {
           <AdminNav />
         </Grid>
         <Grid item xs={9} className="pl-24">
-          <ul>
+          <ul className="author-list">
             {authors.items.map((author) => (
               <li key={author.id}>{author.authorName}</li>
             ))}
@@ -84,7 +84,7 @@ export default function AuthorForm() {
               //error={nameError}
             />
             <Button variant="outlined" color="secondary" type="submit">
-              Add New Author
+              Add
             </Button>
           </form>
         </Grid>

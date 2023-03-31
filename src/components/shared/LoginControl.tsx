@@ -18,7 +18,7 @@ function LoginControl() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ mb: 3 }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               BoiMela
@@ -26,15 +26,18 @@ function LoginControl() {
 
             {/* <Button color="inherit">Login</Button> */}
             {loggedInUser !== null ? (
-              <Link to="/logout">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    dispatch(logout())
-                  }}>
-                  Logout
-                </Button>
-              </Link>
+              <>
+                <span className="pr-24">{loggedInUser?.firstName}</span>
+                <Link to="/logout">
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      dispatch(logout())
+                    }}>
+                    Logout
+                  </Button>
+                </Link>
+              </>
             ) : (
               <Link to="/login">
                 <Button variant="contained">Login</Button>

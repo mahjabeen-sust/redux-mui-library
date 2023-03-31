@@ -73,7 +73,7 @@ const Books = () => {
                 <Typography variant="body2" color="text.secondary">
                   Publisher :{book.publisher}
                 </Typography>
-                <Typography gutterBottom variant="h6" component="span">
+                <Typography gutterBottom component="span">
                   {book.status ? 'Available' : 'Borrowed'}
                 </Typography>
               </CardContent>
