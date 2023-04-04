@@ -8,7 +8,7 @@ import AdminDashboard from './components/admin/AdminDashboard'
 import BookForm from './components/book/BookForm'
 import EditBook from './components/book/EditBook'
 import AuthorForm from './components/author/AuthorForm'
-import EditAuthorForm from './components/author/EditAuthorForm'
+import EditAuthor from './components/author/EditAuthor'
 import UsersList from './components/user/UsersList'
 import BorrowedBooks from './components/user/BorrowedBooks'
 import Books from './components/book/Books'
@@ -65,7 +65,7 @@ function App() {
                 <Route path="/addBook" element={<BookForm />} />
                 <Route path="/updateBook" element={<EditBook />} />
                 <Route path="/addAuthor" element={<AuthorForm />} />
-                <Route path="/updateAuthor" element={<EditAuthorForm />} />
+                <Route path="/updateAuthor" element={<EditAuthor />} />
                 <Route path="/manageUser" element={<UsersList />} />
               </Route>
             </Routes>
